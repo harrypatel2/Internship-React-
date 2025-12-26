@@ -10,6 +10,8 @@ import Register from './pages/Register.jsx'
 import VerifyOtp from './pages/VerifyOtp.jsx'
 import Login from './pages/Login.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
+import UserProfile from './pages/UserProfile.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 // Admin Components
 import AdminLayout from './components/admin/AdminLayout.jsx'
@@ -17,6 +19,7 @@ import AdminProducts from './pages/admin/AdminProducts.jsx'
 import AdminAddProduct from './pages/admin/AdminAddProduct.jsx'
 import AdminEditProduct from './pages/admin/AdminEditProduct.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import AdminRoute from './components/AdminRoute.jsx'
 
 
 const App = () => {
@@ -38,8 +41,12 @@ const App = () => {
         <Route path='/verify-otp' element={<VerifyOtp />} />
         <Route path='/login' element={<Login />} />
 
-        {/* Admin Routes */}
+        {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
+          <Route path='/profile' element={<UserProfile />} />
+        </Route>
+
+        <Route element={<AdminRoute />}>
           <Route path='/admin' element={<AdminLayout />}>
             <Route index element={<Navigate to="/admin/products" replace />} />
             <Route path='products' element={<AdminProducts />} />
@@ -47,6 +54,9 @@ const App = () => {
             <Route path='products/edit/:id' element={<AdminEditProduct />} />
           </Route>
         </Route>
+
+        {/* 404 Route */}
+        <Route path='*' element={<NotFound />} />
       </Routes>
       {!isAdminRoute && <Footer />}
     </>

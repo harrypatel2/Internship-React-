@@ -89,7 +89,10 @@ const Header = () => {
             </div>
             {showDropdown && (
               <div className="profile-dropdown">
-                <div className="dropdown-item" onClick={() => setShowDropdown(false)}>
+                <div className="dropdown-item" onClick={() => {
+                  setShowDropdown(false);
+                  navigate('/profile');
+                }}>
                   Manage Profile
                 </div>
                 <div className="dropdown-item" onClick={handleSignOut}>
