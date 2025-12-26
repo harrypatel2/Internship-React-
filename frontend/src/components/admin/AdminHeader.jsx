@@ -12,6 +12,7 @@ const AdminHeader = () => {
     };
 
     const navItems = [
+        { path: '/admin/dashboard', label: 'Dashboard', icon: '📊' },
         { path: '/admin/products', label: 'Products', icon: '📦' },
     ];
 
@@ -31,8 +32,8 @@ const AdminHeader = () => {
                             key={item.path}
                             to={item.path}
                             className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium ${pathname === item.path
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
-                                    : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
                                 }`}
                         >
                             <span>{item.icon}</span>

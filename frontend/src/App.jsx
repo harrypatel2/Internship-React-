@@ -12,6 +12,7 @@ import Login from './pages/Login.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
 import UserProfile from './pages/UserProfile.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 // Admin Components
 import AdminLayout from './components/admin/AdminLayout.jsx'
@@ -48,7 +49,8 @@ const App = () => {
 
         <Route element={<AdminRoute />}>
           <Route path='/admin' element={<AdminLayout />}>
-            <Route index element={<Navigate to="/admin/products" replace />} />
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path='dashboard' element={<Dashboard />} />
             <Route path='products' element={<AdminProducts />} />
             <Route path='products/add' element={<AdminAddProduct />} />
             <Route path='products/edit/:id' element={<AdminEditProduct />} />

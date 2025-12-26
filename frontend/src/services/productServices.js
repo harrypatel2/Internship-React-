@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:5000/api/admin/products",
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+const axiosInstance = axios.create({
+  baseURL: `${API_URL}/api/admin/products`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -49,12 +51,12 @@ export const updateProduct = async (id, data, token) => {
   } catch (error) {
     throw error.response?.data || error.message;
   }
-};      
+};
 export const deleteProduct = async (id, token) => {
   try {
     const response = await API.delete(`/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`,     
+        Authorization: `Bearer ${token}`,
       },
     });
     return response.data;
