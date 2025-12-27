@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
-import Product from './models/Product.js';
+// Product model imported via controller
 
 dotenv.config();
 
@@ -37,7 +37,7 @@ import authRoutes from './routes/userRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import statsRoutes from './routes/statsRoutes.js';
 
-app.use('/api/admin/products', productRoutes);
+app.use('/api/products', productRoutes);
 
 
 // use Routes
