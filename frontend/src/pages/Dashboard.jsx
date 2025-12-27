@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { getStats } from '../services/statsServices';
 
 const Dashboard = () => {
     const [stats, setStats] = useState({ products: 0, users: 0 });
@@ -9,9 +9,8 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-                const response = await axios.get(`${apiUrl}/api/stats`);
-                setStats(response.data);
+                const data = await getStats();
+                setStats(data);
             } catch (error) {
                 console.error("Error fetching stats:", error);
             } finally {
