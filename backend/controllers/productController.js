@@ -10,12 +10,16 @@ export const createProduct = async (req, res) => {
 
 export const getAllProducts = async (req, res) => {
     try {
+        console.log("Fetching all products...");
         const products = await Product.find()
             .populate('createdBy', 'name email')
             .sort({ createdAt: -1 });
+
+        console.log(`Found ${products.length} products`);
         res.status(200).json(products);
     } catch (error) {
-        res.status(500).json({ message: "Server Error" });
+        console.error("Error in getAllProducts:", error);
+        res.status(500).json({ message: "Server Error", error: error.message });
     }
 }
 
