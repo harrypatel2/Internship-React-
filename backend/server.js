@@ -23,7 +23,7 @@ app.use(express.json());
 
 
 //Import Routes
-import authRoutes from './routes/user.js';
+import authRoutes from './routes/userRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import statsRoutes from './routes/statsRoutes.js';
 
