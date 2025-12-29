@@ -122,7 +122,6 @@ const Home = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         addToCart(product);
-                        console.log(`Added ${product.name} to cart`);
                         toast.success(`${product.name} added to cart!`);
                       }}
                       className="bg-white p-3 rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition-colors duration-300"

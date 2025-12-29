@@ -94,7 +94,6 @@ const ProductDetails = () => {
                             <button
                                 onClick={() => {
                                     addToCart(product);
-                                    console.log(`Added ${product.name} to cart`);
                                     toast.success(`${product.name} added to cart!`);
                                 }}
                                 className="flex-1 bg-white border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl hover:bg-blue-50 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2"

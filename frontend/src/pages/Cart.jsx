@@ -42,7 +42,7 @@ const Cart = () => {
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
 
-                <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
+                <div className="lg:grid lg:grid-cols-12 lg:gap-x-12">
                     <section className="lg:col-span-8">
                         <ul className="bg-white rounded-2xl shadow-sm overflow-hidden divide-y divide-gray-100">
                             {cartItems.map((item) => (
@@ -102,8 +102,8 @@ const Cart = () => {
                     </section>
 
                     {/* Order Summary */}
-                    <section className="lg:col-span-4 mt-8 lg:mt-0">
-                        <div className="bg-white rounded-2xl shadow-sm p-6 lg:sticky lg:top-24">
+                    <section className="lg:col-span-4 mt-8 lg:mt-0 lg:sticky lg:top-24 self-start">
+                        <div className="bg-white rounded-2xl shadow-sm p-6">
                             <h2 className="text-lg font-bold text-gray-900 mb-6">Order Summary</h2>
 
                             <div className="flow-root">
