@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import toast from 'react-hot-toast';
+import { useCart } from "../context/CartContext";
 import eyeglass1 from "../assets/eyeglass_1.png";
 import eyeglass2 from "../assets/eyeglass_2.png";
 import eyeglass3 from "../assets/eyeglass_3.png";
@@ -9,6 +11,7 @@ import { getAllProducts } from "../services/productServices";
 
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
+  const { addToCart } = useCart();
 
   // Fetch real products for the trending section, fallback to static if needed
   useEffect(() => {
@@ -114,8 +117,25 @@ const Home = () => {
                   </div>
                   {/* Quick Add Overlay */}
                   <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 right-4 bg-white p-3 rounded-full shadow-lg opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                    <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" /></svg>
+                  <div className="absolute top-4 right-4 flex flex-col gap-3 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addToCart(product);
+                        console.log(`Added ${product.name} to cart`);
+                        toast.success(`${product.name} added to cart!`);
+                      }}
+                      className="bg-white p-3 rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                      title="Add to Cart"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    </button>
+                    <button
+                      className="bg-white p-3 rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                      title="Quick View"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                    </button>
                   </div>
                 </div>
                 <div>

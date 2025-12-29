@@ -13,6 +13,7 @@ import ProductDetails from './pages/ProductDetails.jsx'
 import UserProfile from './pages/UserProfile.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import Cart from './pages/Cart.jsx'
 
 // Admin Components
 import AdminLayout from './components/admin/AdminLayout.jsx'
@@ -23,12 +24,15 @@ import ProtectedRoute from './components/ProtectedRoute.jsx'
 import AdminRoute from './components/AdminRoute.jsx'
 
 
+import { Toaster } from 'react-hot-toast'
+
 const App = () => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <>
+      <Toaster position="top-right" />
       {!isAdminRoute && <Header />}
       <Routes>
         {/* Public Routes */}
@@ -36,6 +40,7 @@ const App = () => {
         <Route path='/home' element={<Home />} />
         <Route path='/products' element={<Products />} />
         <Route path='/products/:id' element={<ProductDetails />} />
+        <Route path='/cart' element={<Cart />} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/register' element={<Register />} />

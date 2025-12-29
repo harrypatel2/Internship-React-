@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useCart } from '../context/CartContext';
 import { getSingleProduct } from '../services/productServices';
 
 const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { addToCart } = useCart();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -87,8 +90,19 @@ const ProductDetails = () => {
                             {product.desc}
                         </p>
 
-                        <div className="mt-auto">
-                            <button className="w-full md:w-auto bg-blue-600 text-white px-10 py-4 rounded-xl hover:bg-blue-700 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1 active:translate-y-0">
+                        <div className="mt-auto flex gap-4">
+                            <button
+                                onClick={() => {
+                                    addToCart(product);
+                                    console.log(`Added ${product.name} to cart`);
+                                    toast.success(`${product.name} added to cart!`);
+                                }}
+                                className="flex-1 bg-white border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl hover:bg-blue-50 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                Add into Cart
+                            </button>
+                            <button className="flex-1 bg-blue-600 text-white px-8 py-4 rounded-xl hover:bg-blue-700 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1 active:translate-y-0">
                                 Buy Now
                             </button>
                         </div>
