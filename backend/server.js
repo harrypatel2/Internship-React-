@@ -36,14 +36,18 @@ app.use(express.json());
 import authRoutes from './routes/userRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import statsRoutes from './routes/statsRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js'; // Added paymentRoutes
 
 app.use('/api/products', productRoutes);
 
 
 // use Routes
 
-app.use('/api/auth', authRoutes);
-app.use('/api/stats', statsRoutes);
+app.use("/api/users", authRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/payment", paymentRoutes); // Added paymentRoutes
 
 
 

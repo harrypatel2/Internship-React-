@@ -91,7 +91,7 @@ const UserProfile = () => {
                         <div className="card">
                             <h4 style={{ fontSize: '1.1rem', marginBottom: '1rem' }}>Account Settings</h4>
                             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Update your password and security settings.</p>
-                            <button className="btn" style={{ marginTop: '1rem', width: '100%', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>
+                            <button onClick={() => window.location.href = '/account-settings'} className="btn" style={{ marginTop: '1rem', width: '100%', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>
                                 Edit Settings
                             </button>
                         </div>
@@ -99,7 +99,7 @@ const UserProfile = () => {
                         <div className="card">
                             <h4 style={{ fontSize: '1.1rem', marginBottom: '1rem' }}>Order History</h4>
                             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>View your past orders and invoices.</p>
-                            <button className="btn" style={{ marginTop: '1rem', width: '100%', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>
+                            <button onClick={() => window.location.href = '/my-orders'} className="btn" style={{ marginTop: '1rem', width: '100%', background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>
                                 View Orders
                             </button>
                         </div>

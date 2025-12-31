@@ -9,8 +9,8 @@ const Cart = () => {
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => {
-            // Assuming price is a string like "$120", remove '$' and parse
-            const price = parseFloat(item.price.replace('$', ''));
+            // Assuming price is a string like "₹120", remove '₹' and parse
+            const price = parseFloat(item.price.replace('₹', ''));
             return total + price * item.quantity;
         }, 0).toFixed(2);
     };
@@ -110,7 +110,7 @@ const Cart = () => {
                                 <dl className="-my-4 text-sm divide-y divide-gray-100">
                                     <div className="py-4 flex items-center justify-between">
                                         <dt className="text-gray-600">Subtotal</dt>
-                                        <dd className="font-medium text-gray-900">${calculateTotal()}</dd>
+                                        <dd className="font-medium text-gray-900">₹{calculateTotal()}</dd>
                                     </div>
                                     <div className="py-4 flex items-center justify-between">
                                         <dt className="text-gray-600">Shipping</dt>
@@ -118,7 +118,7 @@ const Cart = () => {
                                     </div>
                                     <div className="py-4 flex items-center justify-between">
                                         <dt className="text-base font-bold text-gray-900">Total</dt>
-                                        <dd className="text-xl font-bold text-blue-600">${calculateTotal()}</dd>
+                                        <dd className="text-xl font-bold text-blue-600">₹{calculateTotal()}</dd>
                                     </div>
                                 </dl>
                             </div>
@@ -127,7 +127,7 @@ const Cart = () => {
                                 <button
                                     type="button"
                                     className="w-full bg-blue-600 border border-transparent rounded-xl shadow-lg py-4 px-4 text-base font-bold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all transform hover:-translate-y-1"
-                                    onClick={() => toast.success('Checkout functionality coming soon!')}
+                                    onClick={() => navigate('/checkout')}
                                 >
                                     Checkout
                                 </button>
@@ -140,8 +140,8 @@ const Cart = () => {
                         </div>
                     </section>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

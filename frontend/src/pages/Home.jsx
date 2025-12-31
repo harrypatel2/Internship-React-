@@ -31,9 +31,9 @@ const Home = () => {
 
   // Fallback static data if API fails or returns empty
   const displayProducts = featuredProducts.length > 0 ? featuredProducts : [
-    { _id: 1, name: "Modern Spec", price: "$120", img: eyeglass1, desc: "Stylish and modern frames." },
-    { _id: 2, name: "Golden Aviator", price: "$150", img: eyeglass2, desc: "Classic gold aviators." },
-    { _id: 3, name: "Reading Round", price: "$90", img: eyeglass3, desc: "Minimalist round glasses." },
+    { _id: 1, name: "Modern Spec", price: "₹120", img: eyeglass1, desc: "Stylish and modern frames." },
+    { _id: 2, name: "Golden Aviator", price: "₹150", img: eyeglass2, desc: "Classic gold aviators." },
+    { _id: 3, name: "Reading Round", price: "₹90", img: eyeglass3, desc: "Minimalist round glasses." },
   ];
 
   return (

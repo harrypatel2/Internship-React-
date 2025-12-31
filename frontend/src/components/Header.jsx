@@ -115,6 +115,12 @@ const Header = () => {
                 }}>
                   Manage Profile
                 </div>
+                <div className="dropdown-item" onClick={() => {
+                  setShowDropdown(false);
+                  navigate('/my-orders');
+                }}>
+                  My Orders
+                </div>
                 <div className="dropdown-item" onClick={handleSignOut}>
                   Sign Out
                 </div>

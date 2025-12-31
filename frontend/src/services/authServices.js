@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// Force localhost 5001 and correct users path
+const API_URL = 'http://localhost:5001';
 
 const API = axios.create({
-  baseURL: `${API_URL}/api/auth`,
+  baseURL: `${API_URL}/api/users`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -37,6 +38,20 @@ export const verifyOtp = async (data) => {
 export const loginUser = async (data) => {
   try {
     const response = await API.post('/login', data);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const updateUserDetails = async (data, token) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await API.put('/profile', data, config);
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;

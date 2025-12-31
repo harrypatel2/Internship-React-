@@ -12,7 +12,12 @@ router.post("/register", register, sendOtpMail, (req, res) => {
 });
 
 router.post("/verify-otp", verifyOtp);
+router.post("/verify-otp", verifyOtp);
 router.post("/login", login);
+
+import { protect } from "../middlewares/authMiddleware.js";
+import { updateUserProfile } from "../controllers/userController.js";
+router.route('/profile').put(protect, updateUserProfile);
 
 // Error handling middleware (must be last)
 router.use((err, req, res, next) => {

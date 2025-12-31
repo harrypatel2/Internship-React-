@@ -40,13 +40,13 @@ const register = async (req, res, next) => {
     if (existingUser) {
       // If user exists and is verified, reject
       if (existingUser.isVerified) {
-      console.log("❌ User already exists and verified");
-        return res.status(400).json({ 
+        console.log("❌ User already exists and verified");
+        return res.status(400).json({
           message: "User already exists and verified",
-          isVerified: true 
+          isVerified: true
         });
       }
-      
+
       // If user exists but NOT verified, delete old record and allow re-registration
       console.log("🔄 Unverified user found, deleting old record...");
       await User.deleteOne({ email });
@@ -146,12 +146,12 @@ export const verifyOtp = async (req, res) => {
       console.log('❌ User not found');
       return res.status(400).json({ message: "User not found" });
     }
-    
+
     if (user.isVerified) {
       console.log('❌ User already verified');
       return res.status(400).json({ message: "User already verified" });
     }
-    
+
     if (user.otp !== otp) {
       console.log('❌ Invalid OTP provided');
       return res.status(400).json({ message: "Invalid OTP" });
@@ -181,7 +181,7 @@ export const verifyOtp = async (req, res) => {
     console.log('✅ Token generated successfully');
 
     // Return token in response
-    res.status(200).json({ 
+    res.status(200).json({
       message: "OTP verified successfully",
       token,
       user: {
@@ -198,4 +198,36 @@ export const verifyOtp = async (req, res) => {
   }
 };
 
+
+export const updateUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      user.name = req.body.name || user.name;
+
+      if (req.body.password) {
+        user.password = await bcrypt.hash(req.body.password, 10);
+      }
+
+      const updatedUser = await user.save();
+
+      res.json({
+        id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        role: updatedUser.role,
+        isVerified: updatedUser.isVerified,
+        token: generateToken(updatedUser),
+      });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    console.error("❌ Update profile error:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 export { register };
+

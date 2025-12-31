@@ -45,6 +45,9 @@ const AdminHeader = () => {
 
             {/* Right Side: Profile & Logout */}
             <div className="flex items-center space-x-6">
+                <Link to="/home" className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
+                    Back to Website
+                </Link>
                 <div className="flex items-center space-x-3 border-r border-gray-700 pr-6">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center font-bold text-sm">
                         A
